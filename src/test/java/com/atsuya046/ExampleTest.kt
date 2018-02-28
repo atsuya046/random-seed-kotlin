@@ -6,6 +6,6 @@ import org.junit.jupiter.api.Test
 class ExampleTest {
     @Test
     fun test() {
-        Assertions.assertTrue(Example.sum(1, 1) == 3)
+        Assertions.assertTrue(Example.sum(1, 1) == 2)
     }
 }
