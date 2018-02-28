@@ -36,7 +36,9 @@ dependencies {
     ktlint "com.github.shyiko:ktlint:0.16.1"
 
     testCompile('org.junit.jupiter:junit-jupiter-api:5.1.0')
+    testRuntime("org.junit.platform:junit-platform-launcher:1.1.0")
     testRuntime('org.junit.jupiter:junit-jupiter-engine:5.1.0')
+    testRuntime("org.junit.vintage:junit-vintage-engine:5.1.0")
 }
 
 compileKotlin {
