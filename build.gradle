@@ -19,6 +19,8 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'jacoco'
+
 
 sourceCompatibility = 1.8
 
@@ -46,6 +48,25 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+jacoco {
+    toolVersion = "0.8.0"
+    applyTo junitPlatformTest
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.enabled true
+    }
+}
+
+junitPlatformTest {
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/test.exec")
+    }
 }
 
 configurations {
