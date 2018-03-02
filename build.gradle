@@ -33,6 +33,7 @@ repositories {
 
 configurations {
     ktlint
+    codacy
 }
 
 dependencies {
@@ -73,10 +74,6 @@ junitPlatformTest {
     }
 }
 
-configurations {
-    ktlint
-}
-
 task ktlint(type: JavaExec, group: "verification") {
     description = "Check Kotlin code style."
     classpath = configurations.ktlint
@@ -94,8 +91,6 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
     main = "com.github.shyiko.ktlint.Main"
     args "-F", "src/**/*.kt"
 }
-
-configurations { codacy }
 
 task sendCoverageToCodacy(type: JavaExec, dependsOn: jacocoTestReport) {
     main = "com.codacy.CodacyCoverageReporter"
