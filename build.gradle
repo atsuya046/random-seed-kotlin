@@ -90,6 +90,7 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
     args "-F", "src/**/*.kt"
 }
 
+// for ci
 task sendCoverageToCodacy(type: JavaExec, dependsOn: jacocoTestReport) {
     main = "-cp"
     args = [
