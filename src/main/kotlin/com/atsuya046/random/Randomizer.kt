@@ -1,6 +1,6 @@
 package com.atsuya046.random
 
-import java.util.*
+import java.util.Random
 
 interface Randomizer<out T> {
     fun generate(): T
