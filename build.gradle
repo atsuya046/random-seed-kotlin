@@ -33,14 +33,12 @@ repositories {
 
 configurations {
     ktlint
-    codacy
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     ktlint "com.github.shyiko:ktlint:0.16.1"
-    codacy 'com.github.codacy:codacy-coverage-reporter:2.0.2'
 
     testCompile('org.junit.jupiter:junit-jupiter-api:5.1.0')
     testRuntime("org.junit.platform:junit-platform-launcher:1.1.0")
@@ -93,11 +91,12 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
 }
 
 task sendCoverageToCodacy(type: JavaExec, dependsOn: jacocoTestReport) {
-    main = "com.codacy.CodacyCoverageReporter"
-    classpath = configurations.codacy
+    main = "-cp"
     args = [
+            "${rootDir}/codacy/codacy-coverage-reporter-2.0.2-assembly.jar",
+            "com.codacy.CodacyCoverageReporter",
             "-l",
-            "Java",
+            "Kotlin",
             "-r",
             "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
     ]
