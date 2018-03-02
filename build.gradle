@@ -21,18 +21,16 @@ apply plugin: 'kotlin'
 apply plugin: 'org.junit.platform.gradle.plugin'
 apply plugin: 'jacoco'
 
+
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
     jcenter()
-    maven { url "https://jitpack.io" }
-    maven { url "http://dl.bintray.com/typesafe/maven-releases" }
 }
 
 configurations {
     ktlint
-    codacy
 }
 
 dependencies {
@@ -43,7 +41,6 @@ dependencies {
     testRuntime("org.junit.platform:junit-platform-launcher:1.1.0")
     testRuntime('org.junit.jupiter:junit-jupiter-engine:5.1.0')
     testRuntime("org.junit.vintage:junit-vintage-engine:5.1.0")
-    codacy 'com.github.codacy:codacy-coverage-reporter:2.0.2'
 }
 
 compileKotlin {
@@ -72,6 +69,10 @@ junitPlatformTest {
     }
 }
 
+configurations {
+    ktlint
+}
+
 task ktlint(type: JavaExec, group: "verification") {
     description = "Check Kotlin code style."
     classpath = configurations.ktlint
@@ -88,15 +89,4 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
     classpath = configurations.ktlint
     main = "com.github.shyiko.ktlint.Main"
     args "-F", "src/**/*.kt"
-}
-
-task sendCoverageToCodacy(type: JavaExec, dependsOn: jacocoTestReport) {
-    main = "com.codacy.CodacyCoverageReporter"
-    classpath = configurations.codacy
-    args = [
-            "-l",
-            "Java",
-            "-r",
-            "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
-    ]
 }
