@@ -1,29 +1,23 @@
 package com.atsuya046.random
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
 
 internal class RandomizerTest {
-
-    abstract class RandomizerTest<out T>(val randomizer: Randomizer<T>) {
-        @Test
-        fun generate() {
-            val a = randomizer.generate()
-            val b = randomizer.generate()
-            Assertions.assertNotEquals(a, b)
-        }
-    }
+    @Nested
+    inner class LongRandomizerTest : AbstractRandomizerTest<Long>(LongRandomizer)
 
     @Nested
-    inner class LongRandomizerTest : RandomizerTest<Long>(LongRandomizer)
+    inner class IntRandomizerTest : AbstractRandomizerTest<Int>(IntRandomizer)
 
     @Nested
-    inner class IntRandomizerTest : RandomizerTest<Int>(IntRandomizer)
+    inner class FloatRandomizerTest : AbstractRandomizerTest<Float>(FloatRandomizer)
 
     @Nested
-    inner class FloatRandomizerTest : RandomizerTest<Float>(FloatRandomizer)
+    inner class DoubleRandomizerTest : AbstractRandomizerTest<Double>(DoubleRandomizer)
 
     @Nested
-    inner class DoubleRandomizerTest : RandomizerTest<Double>(DoubleRandomizer)
+    inner class StringRandomizerTest: AbstractRandomizerTest<String>(StringRandomizer)
+
+    @Nested
+    inner class CharArrayRandomizerTest: AbstractRandomizerTest<CharArray>(CharArrayRandomizer)
 }
