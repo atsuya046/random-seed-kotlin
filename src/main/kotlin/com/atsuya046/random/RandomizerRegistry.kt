@@ -1,6 +1,6 @@
 package com.atsuya046.random
 
-internal class RandomizerRegistory {
+internal class RandomizerRegistry {
 
     var randomizers: MutableSet<Randomizer<*>> = mutableSetOf(
             IntRandomizer,
