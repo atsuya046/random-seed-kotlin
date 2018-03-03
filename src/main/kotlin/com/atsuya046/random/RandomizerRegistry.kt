@@ -1,6 +1,6 @@
 package com.atsuya046.random
 
-internal class RandomizerRegistry {
+class RandomizerRegistry {
 
     var randomizers: MutableSet<Randomizer<*>> = mutableSetOf(
             IntRandomizer,
@@ -11,5 +11,7 @@ internal class RandomizerRegistry {
             CharArrayRandomizer
     )
 
-    fun <T : Any> choose(): Randomizer<T> = randomizers.find { it as? Randomizer<T> != null } as Randomizer<T>
+    inline fun <reified T : Any> choose(): Randomizer<T> = randomizers
+            .firstOrNull { it.type == T::class } as Randomizer<T>?
+            ?: throw IllegalArgumentException("Cannot find Randomizer.")
 }
