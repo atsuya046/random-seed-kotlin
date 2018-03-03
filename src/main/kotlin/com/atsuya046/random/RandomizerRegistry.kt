@@ -11,6 +11,5 @@ internal class RandomizerRegistry {
             CharArrayRandomizer
     )
 
-    inline fun <reified T : Any> choose(): Randomizer<T> = randomizers.find { it.type == T::class } as? Randomizer<T>
-            ?: throw IllegalArgumentException("Can not find Randomizer for ${T::class}")
+    fun <T : Any> choose(): Randomizer<T> = randomizers.find { it as? Randomizer<T> != null } as Randomizer<T>
 }
