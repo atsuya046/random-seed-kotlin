@@ -10,8 +10,6 @@ internal abstract class AbstractRandomizerRegistry {
     abstract fun <T : Any> choose(clazz: Class<T>): List<Randomizer<T>>
 }
 
-internal inline fun <reified T : Any> AbstractRandomizerRegistry.choose() = this.choose(T::class.java)
-
 internal inline fun <reified T : Any> AbstractRandomizerRegistry.set(randomizer: Randomizer<T>) = this.set(T::class.java, randomizer)
 
 internal class RandomizerRegistry : AbstractRandomizerRegistry() {
