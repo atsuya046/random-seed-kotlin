@@ -4,7 +4,7 @@ import kotlin.math.absoluteValue
 
 private const val MAX_LENGTH = 30
 
-object CharArrayRandomizer : Randomizer<CharArray>(CharArray::class) {
+object CharArrayRandomizer : Randomizer<CharArray>() {
     private val sources = ('0'..'9') + ('a'..'z') + ('A'..'Z')
 
     override fun generate(): CharArray {
