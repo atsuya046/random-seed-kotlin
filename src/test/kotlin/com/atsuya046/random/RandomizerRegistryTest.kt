@@ -10,11 +10,11 @@ internal class RandomizerRegistryTest {
     fun choose() {
         val registry = RandomizerRegistry()
 
-        assertTrue(registry.choose<String>().generate() is String)
-        assertTrue(registry.choose<CharArray>().generate() is CharArray)
-        assertTrue(registry.choose<Int>().generate() is Int)
-        assertTrue(registry.choose<Long>().generate() is Long)
-        assertTrue(registry.choose<Float>().generate() is Float)
-        assertTrue(registry.choose<Double>().generate() is Double)
+        assertTrue(registry.choose<String>().first().generate() is String)
+        assertTrue(registry.choose<CharArray>().first().generate() is CharArray)
+        assertTrue(registry.choose<Int>().first().generate() is Int)
+        assertTrue(registry.choose<Long>().first().generate() is Long)
+        assertTrue(registry.choose<Float>().first().generate() is Float)
+        assertTrue(registry.choose<Double>().first().generate() is Double)
     }
 }

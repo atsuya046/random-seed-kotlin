@@ -1,13 +1,13 @@
 package com.atsuya046.random
 
-import kotlin.reflect.KClass
-
-abstract class Randomizer<T : Any>(val type: KClass<T>) {
+abstract class Randomizer<out T : Any> {
     abstract fun generate(): T
 }
 
 class Random {
-    val registry = RandomizerRegistry()
+    private val registry = RandomizerRegistry()
 
-    inline fun <reified T : Any> generate(): T = registry.choose<T>().generate()
+    fun <T : Any> generate(clazz: Class<T>): T = registry.choose(clazz).first().generate()
+
+    inline fun <reified T : Any> generate(): T = generate(T::class.java)
 }
