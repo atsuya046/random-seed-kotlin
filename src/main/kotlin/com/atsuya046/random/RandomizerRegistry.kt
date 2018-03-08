@@ -13,7 +13,7 @@ internal abstract class AbstractRandomizerRegistry {
 internal inline fun <reified T : Any> AbstractRandomizerRegistry.set(randomizer: Randomizer<T>) = this.set(T::class.java, randomizer)
 
 internal class RandomizerRegistry : AbstractRandomizerRegistry() {
-    private val registries: List<AbstractRandomizerRegistry> = listOf(InnerRandomizerRegistray)
+    private val registries: List<AbstractRandomizerRegistry> = listOf(InnerRandomizerRegistry)
 
     override fun <T : Any> choose(clazz: Class<T>): List<Randomizer<T>> =
             registries.foldRight(emptyList()) { registry, randomizers ->
@@ -21,7 +21,7 @@ internal class RandomizerRegistry : AbstractRandomizerRegistry() {
             }
 }
 
-internal object InnerRandomizerRegistray : AbstractRandomizerRegistry() {
+internal object InnerRandomizerRegistry : AbstractRandomizerRegistry() {
     init {
         set(IntRandomizer)
         set(LongRandomizer)
