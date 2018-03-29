@@ -13,8 +13,6 @@ internal abstract class AbstractRandomizerRegistry : Choosable, Registrable {
             randomizers[clazz]?.let { listOf(it as Randomizer<T>) } ?: emptyList()
 }
 
-internal inline fun <reified T : Any> AbstractRandomizerRegistry.set(randomizer: Randomizer<T>) = this.register(T::class, randomizer)
-
 internal interface Choosable {
     fun <T : Any> choose(clazz: KClass<T>): List<Randomizer<T>>
 }
@@ -22,6 +20,8 @@ internal interface Choosable {
 internal interface Registrable {
     fun <T : Any> register(clazz: KClass<T>, randomizer: Randomizer<T>)
 }
+
+internal inline fun <reified T : Any> Registrable.register(randomizer: Randomizer<T>) = this.register(T::class, randomizer)
 
 internal class RandomizerRegistry : AbstractRandomizerRegistry() {
     private val customRegistry = CustomRandomizerRegistry()
@@ -38,12 +38,12 @@ internal class RandomizerRegistry : AbstractRandomizerRegistry() {
 
 internal object InnerRandomizerRegistry : AbstractRandomizerRegistry() {
     init {
-        set(IntRandomizer)
-        set(LongRandomizer)
-        set(FloatRandomizer)
-        set(DoubleRandomizer)
-        set(StringRandomizer)
-        set(CharArrayRandomizer)
+        register(IntRandomizer)
+        register(LongRandomizer)
+        register(FloatRandomizer)
+        register(DoubleRandomizer)
+        register(StringRandomizer)
+        register(CharArrayRandomizer)
     }
 }
 
