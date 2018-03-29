@@ -26,7 +26,7 @@ internal interface Registrable {
 internal class RandomizerRegistry : AbstractRandomizerRegistry() {
     private val customRegistry = CustomRandomizerRegistry()
 
-    private val registries: List<AbstractRandomizerRegistry> = listOf(InnerRandomizerRegistry, customRegistry)
+    private val registries: List<AbstractRandomizerRegistry> = listOf(customRegistry, InnerRandomizerRegistry)
 
     override fun <T : Any> register(clazz: KClass<T>, randomizer: Randomizer<T>) = customRegistry.register(clazz, randomizer)
 

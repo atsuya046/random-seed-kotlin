@@ -1,5 +1,6 @@
 package com.atsuya046.random
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
@@ -13,5 +14,17 @@ internal class RandomTest {
         assertTrue(Random.generate<Long>() is Long)
         assertTrue(Random.generate<Float>() is Float)
         assertTrue(Random.generate<Double>() is Double)
+    }
+
+    @Test
+    fun customRandomizer() {
+        class FixRandomizer(val fixed: Int): Randomizer<Int>() {
+            override fun generate(): Int = fixed
+        }
+
+        (1..5).forEach {
+            val random = Random.newInstance().apply { register(FixRandomizer(it)) }
+            assertEquals(random.generate(), it)
+        }
     }
 }
