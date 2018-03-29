@@ -7,12 +7,11 @@ internal class RandomTest {
     @Test
     @Suppress("USELESS_IS_CHECK")
     fun generate() {
-        val random = Random()
-        assertTrue(random.generate<String>() is String)
-        assertTrue(random.generate<CharArray>() is CharArray)
-        assertTrue(random.generate<Int>() is Int)
-        assertTrue(random.generate<Long>() is Long)
-        assertTrue(random.generate<Float>() is Float)
-        assertTrue(random.generate<Double>() is Double)
+        assertTrue(Random.generate<String>() is String)
+        assertTrue(Random.generate<CharArray>() is CharArray)
+        assertTrue(Random.generate<Int>() is Int)
+        assertTrue(Random.generate<Long>() is Long)
+        assertTrue(Random.generate<Float>() is Float)
+        assertTrue(Random.generate<Double>() is Double)
     }
 }
