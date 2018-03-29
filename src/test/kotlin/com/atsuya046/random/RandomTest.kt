@@ -18,7 +18,7 @@ internal class RandomTest {
 
     @Test
     fun customRandomizer() {
-        class FixRandomizer(val fixed: Int): Randomizer<Int>() {
+        class FixRandomizer(val fixed: Int) : Randomizer<Int>() {
             override fun generate(): Int = fixed
         }
 
