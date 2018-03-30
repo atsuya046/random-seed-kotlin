@@ -41,3 +41,7 @@ jobs:
       # run tests!
       - run: gradle check jacocoTestReport
       - run: bash <(curl -s https://codecov.io/bash)
+      - run: gradle sendCoverageToCodacy
+      - store_test_results:
+          paths:
+            - build/test-results/

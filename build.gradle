@@ -3,7 +3,7 @@ version '0.0.1-SNAPSHOT'
 
 buildscript {
     ext {
-        kotlin_version = '1.2.21'
+        kotlin_version = '1.2.30'
         ktlint_version = '0.16.1'
     }
 
@@ -26,6 +26,8 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
+    maven { url "http://dl.bintray.com/typesafe/maven-releases" }
     jcenter()
 }
 
@@ -35,6 +37,10 @@ configurations {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    implementation "io.github.lukehutch:fast-classpath-scanner:2.18.1"
+
     ktlint "com.github.shyiko:ktlint:0.16.1"
 
     testCompile('org.junit.jupiter:junit-jupiter-api:5.1.0')
@@ -69,10 +75,6 @@ junitPlatformTest {
     }
 }
 
-configurations {
-    ktlint
-}
-
 task ktlint(type: JavaExec, group: "verification") {
     description = "Check Kotlin code style."
     classpath = configurations.ktlint
@@ -89,4 +91,17 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
     classpath = configurations.ktlint
     main = "com.github.shyiko.ktlint.Main"
     args "-F", "src/**/*.kt"
+}
+
+// for ci
+task sendCoverageToCodacy(type: JavaExec, dependsOn: jacocoTestReport) {
+    main = "-cp"
+    args = [
+            "${rootDir}/codacy/codacy-coverage-reporter-2.0.2-assembly.jar",
+            "com.codacy.CodacyCoverageReporter",
+            "-l",
+            "Kotlin",
+            "-r",
+            "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+    ]
 }
