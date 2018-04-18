@@ -1,9 +1,8 @@
 package com.atsuya046.random
 
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner
-import java.lang.reflect.Constructor
-import java.lang.reflect.Modifier
 import kotlin.reflect.KClass
+import kotlin.reflect.jvm.javaConstructor
 
 class ObjectRandomizer(private val random: Random) {
 
@@ -23,12 +22,22 @@ class ObjectRandomizer(private val random: Random) {
     }
 
     private fun <T : Any> generateInstance(clazz: KClass<T>): T {
-        val constructor = clazz.java.constructors.firstOrNull { Modifier.isPublic(it.modifiers) } as Constructor<T>?
-                ?: throw RuntimeException("Public constructor is not found.")
-        val arguments = constructor.parameterTypes.map {
-            random.generate(it.kotlin)
-        }.toTypedArray()
+        val constructor = clazz.constructors.firstOrNull() ?: throw RuntimeException("Public constructor is not found.")
+        val arguments = constructor.parameters.fold(emptyArray<Any?>()) { acc, parameter ->
+            val argument = with(parameter.type.classifier as KClass<*>?) {
+                if (parameter.type.isMarkedNullable) {
+                    this?.let { random.generateNullable(it) }
+                } else {
+                    this?.let { random.generate(it) }
+                }
+            }
+            acc + argument
+        }
 
-        return if (arguments.isEmpty()) constructor.newInstance() else constructor.newInstance(*arguments)
+        return if (arguments.isEmpty()) {
+            constructor.javaConstructor?.newInstance()
+        } else {
+            constructor.javaConstructor?.newInstance(*arguments)
+        } ?: throw RuntimeException("Cannot get constructor.")
     }
 }

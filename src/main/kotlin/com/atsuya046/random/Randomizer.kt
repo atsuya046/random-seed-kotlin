@@ -15,6 +15,13 @@ abstract class Random : Registrable {
 
     inline fun <reified T : Any> generate(): T = generate(T::class)
 
+    fun <A : Any> generateNullable(clazz: KClass<A>): A? = when (IntRandomizer.generate() % 2) {
+        0 -> null
+        else -> generate(clazz)
+    }
+
+    inline fun <reified T : Any> generateNullable(): T? = generateNullable(T::class)
+
     override fun <T : Any> register(clazz: KClass<T>, randomizer: Randomizer<T>) = registry.register(clazz, randomizer)
 
     companion object : Random() {

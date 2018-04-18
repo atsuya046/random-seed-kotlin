@@ -17,6 +17,13 @@ internal class RandomTest {
     }
 
     @Test
+    fun generateOrNull() {
+        val randomizedValues = (1..100).map { Random.generateNullable<String>() }
+        assertTrue(randomizedValues.any { it == null })
+        assertTrue(randomizedValues.any { it != null })
+    }
+
+    @Test
     fun customRandomizer() {
         class FixRandomizer(val fixed: Int) : Randomizer<Int>() {
             override fun generate(): Int = fixed
