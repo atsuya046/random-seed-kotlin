@@ -36,7 +36,7 @@ internal class RandomTest {
         }
     }
 
-    class FixRandomizer<T: Any>(val fixed: T) : Randomizer<T>() {
+    class FixRandomizer<T : Any>(val fixed: T) : Randomizer<T>() {
         override fun generate(): T = fixed
     }
 }
