@@ -3,7 +3,7 @@ version '0.0.1-SNAPSHOT'
 
 buildscript {
     ext {
-        kotlin_version = '1.2.30'
+        kotlin_version = '1.2.41'
         ktlint_version = '0.16.1'
     }
 
