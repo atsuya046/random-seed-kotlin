@@ -25,13 +25,25 @@ internal class RandomTest {
 
     @Test
     fun customRandomizer() {
-        class FixRandomizer(val fixed: Int) : Randomizer<Int>() {
-            override fun generate(): Int = fixed
-        }
-
         (1..5).forEach {
             val random = Random.newInstance().apply { register(FixRandomizer(it)) }
             assertEquals(random.generate(), it)
         }
+    }
+
+    @Test
+    fun easyRegisterCustomRandomizer() {
+        (1..5).forEach {
+            val random = Random.newInstance().apply {
+                register { it }
+                register { "$it" }
+            }
+            assertEquals(random.generate(), it)
+            assertEquals(random.generate<String>(), "$it")
+        }
+    }
+
+    class FixRandomizer<T : Any>(val fixed: T) : Randomizer<T>() {
+        override fun generate(): T = fixed
     }
 }

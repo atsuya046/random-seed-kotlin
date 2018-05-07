@@ -24,6 +24,12 @@ abstract class Random : Registrable {
 
     override fun <T : Any> register(clazz: KClass<T>, randomizer: Randomizer<T>) = registry.register(clazz, randomizer)
 
+    inline fun <reified T : Any> register(randomizer: Randomizer<T>) = register(T::class, randomizer)
+
+    inline fun <reified T : Any> register(crossinline generator: () -> T) = register(T::class, object : Randomizer<T>() {
+        override fun generate(): T = generator()
+    })
+
     companion object : Random() {
         fun newInstance(): Random = object : Random() {}
     }
