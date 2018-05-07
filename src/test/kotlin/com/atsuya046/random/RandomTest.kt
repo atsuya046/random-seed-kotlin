@@ -17,14 +17,33 @@ internal class RandomTest {
     }
 
     @Test
-    fun customRandomizer() {
-        class FixRandomizer(val fixed: Int) : Randomizer<Int>() {
-            override fun generate(): Int = fixed
-        }
+    fun generateOrNull() {
+        val randomizedValues = (1..100).map { Random.generateNullable<String>() }
+        assertTrue(randomizedValues.any { it == null })
+        assertTrue(randomizedValues.any { it != null })
+    }
 
+    @Test
+    fun customRandomizer() {
         (1..5).forEach {
             val random = Random.newInstance().apply { register(FixRandomizer(it)) }
             assertEquals(random.generate(), it)
         }
+    }
+
+    @Test
+    fun easyRegisterCustomRandomizer() {
+        (1..5).forEach {
+            val random = Random.newInstance().apply {
+                register { it }
+                register { "$it" }
+            }
+            assertEquals(random.generate(), it)
+            assertEquals(random.generate<String>(), "$it")
+        }
+    }
+
+    class FixRandomizer<T : Any>(val fixed: T) : Randomizer<T>() {
+        override fun generate(): T = fixed
     }
 }
