@@ -1,8 +1,28 @@
 # random-seed-kotlin
 
+[![](https://jitpack.io/v/atsuya046/random-seed-kotlin.svg)](https://jitpack.io/#atsuya046/random-seed-kotlin)
+
 This provides random kotlin object.
 
 You can get easily random numbers, string and your domain models. 
+
+# Add dependencies
+root build.gradle
+```groovy
+allprojects {
+    repositories {
+        ...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+add the dependency
+```groovy
+dependencies {
+    implementation 'com.github.atsuya046:random-seed-kotlin:0.0.3'
+}
+```
 
 # How to use
 
