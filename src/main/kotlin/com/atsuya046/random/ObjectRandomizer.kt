@@ -22,6 +22,14 @@ class ObjectRandomizer(private val random: Random) {
     }
 
     private fun <T : Any> generateInstance(clazz: KClass<T>): T {
+        if (clazz::java.get().isEnum) {
+            val enumConstants = clazz::java.get().enumConstants
+            assert(enumConstants.isNotEmpty())
+
+            val randomIndex = random.generate<Int>() % enumConstants.size
+            return enumConstants[randomIndex]
+        }
+
         val constructor = clazz.constructors.firstOrNull() ?: throw RuntimeException("Public constructor is not found.")
         val arguments = constructor.parameters.fold(emptyArray<Any?>()) { acc, parameter ->
             val argument = with(parameter.type.classifier as KClass<*>?) {

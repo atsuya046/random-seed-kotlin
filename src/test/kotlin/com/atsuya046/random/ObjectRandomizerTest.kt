@@ -30,6 +30,13 @@ internal class ObjectRandomizerTest {
         assertTrue(randomizedValues.any { it.nullable != null })
     }
 
+    @Test
+    fun generateEnum() {
+        val objectRandomizer = ObjectRandomizer(Random)
+        val randomValue = objectRandomizer.generate(TestEnum::class)
+        assertTrue { randomValue == TestEnum.A || randomValue == TestEnum.B }
+    }
+
     private class TestData1
     private class TestData2(val i: Int, val s: String)
 
@@ -38,4 +45,8 @@ internal class ObjectRandomizerTest {
     private class TestInherited2(val i: Int, s: String) : TestBase(s)
 
     private class TestNullableField(val nullable: String?)
+
+    enum class TestEnum {
+        A, B;
+    }
 }
