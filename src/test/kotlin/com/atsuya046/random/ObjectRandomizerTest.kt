@@ -32,7 +32,7 @@ internal class ObjectRandomizerTest {
 
     @Test
     fun generateEnum() {
-        val objectRandomizer= ObjectRandomizer(Random)
+        val objectRandomizer = ObjectRandomizer(Random)
         val randomValue = objectRandomizer.generate(TestEnum::class)
         assertTrue { randomValue == TestEnum.A || randomValue == TestEnum.B }
     }
