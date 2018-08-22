@@ -44,6 +44,7 @@ internal object InnerRandomizerRegistry : AbstractRandomizerRegistry() {
         register(DoubleRandomizer)
         register(StringRandomizer)
         register(CharArrayRandomizer)
+        register(BooleanRandomizer)
     }
 }
 
