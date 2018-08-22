@@ -19,7 +19,7 @@ allprojects {
 add the dependency
 ```groovy
 dependencies {
-    implementation 'com.github.atsuya046:random-seed-kotlin:0.0.3'
+    implementation 'com.github.atsuya046:random-seed-kotlin:0.0.5'
 }
 ```
 
@@ -29,14 +29,14 @@ generate random values.
 
 ```kotlin
 // generate random Int
-Random.generate<Int>()
+val randomInt = Random.generate<Int>()
 
 // generate random String
-Random.generate<String>()
+val randomStr = Random.generate<String>()
 
 // generate random your model
 class YourModel(val foo: String, val bar: Int)
-Random.generate<YourModel>()
+val randomYourModel = Random.generate<YourModel>()
 ```
 
 register your custom Randomizer
@@ -49,5 +49,5 @@ Random.register(always5)
 // Random.register { 5 }
 
 // generate 5 
-Random.generate<Int>()
+val a = Random.generate<Int>()
 ```
