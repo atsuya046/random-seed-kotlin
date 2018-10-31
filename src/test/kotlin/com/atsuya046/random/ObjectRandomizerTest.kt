@@ -60,8 +60,8 @@ internal class ObjectRandomizerTest {
     }
 
     sealed class TestSealed(val s: String) {
-        class A(s: String, val a: Int): TestSealed(s)
-        class B(s: String, val b: Int): TestSealed(s)
+        class A(s: String, val a: Int) : TestSealed(s)
+        class B(s: String, val b: Int) : TestSealed(s)
         class C : TestSealed("c")
     }
 }

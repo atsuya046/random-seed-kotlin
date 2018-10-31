@@ -12,7 +12,7 @@ class ObjectRandomizer(private val random: Random) {
         else -> generateInstance(clazz)
     }
 
-    private fun <T: Any> generateSealedSubclassInstance(clazz: KClass<T>): T {
+    private fun <T : Any> generateSealedSubclassInstance(clazz: KClass<T>): T {
         assert(clazz.isSealed)
         val subclass = clazz.sealedSubclasses.shuffled().first()
         return generateInstance(subclass)
