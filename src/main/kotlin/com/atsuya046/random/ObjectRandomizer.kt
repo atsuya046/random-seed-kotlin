@@ -6,8 +6,17 @@ import kotlin.reflect.jvm.javaConstructor
 
 class ObjectRandomizer(private val random: Random) {
 
-    fun <T : Any> generate(clazz: KClass<T>): T = if (clazz.isAbstract) generateSubclassInstance(clazz)
-    else generateInstance(clazz)
+    fun <T : Any> generate(clazz: KClass<T>): T = when {
+        clazz.isAbstract -> generateSubclassInstance(clazz)
+        clazz.isSealed -> generateSealedSubclassInstance(clazz)
+        else -> generateInstance(clazz)
+    }
+
+    private fun <T : Any> generateSealedSubclassInstance(clazz: KClass<T>): T {
+        assert(clazz.isSealed)
+        val subclass = clazz.sealedSubclasses.shuffled().first()
+        return generateInstance(subclass)
+    }
 
     private fun <T : Any> generateSubclassInstance(clazz: KClass<T>): T {
         assert(clazz.isAbstract)
