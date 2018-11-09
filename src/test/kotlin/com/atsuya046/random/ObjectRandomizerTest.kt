@@ -16,6 +16,15 @@ internal class ObjectRandomizerTest {
     }
 
     @Test
+    fun generateSealedSubclass() {
+        val objectRandomizer = ObjectRandomizer(Random)
+        val randomizedValues = (1..100).map { objectRandomizer.generate(TestSealed::class) }
+        assertTrue(randomizedValues.any { it is TestSealed.A })
+        assertTrue(randomizedValues.any { it is TestSealed.B })
+        assertTrue(randomizedValues.any { it is TestSealed.C })
+    }
+
+    @Test
     fun generateWithSuperClass() {
         val objectRandomizer = ObjectRandomizer(Random)
         val result = objectRandomizer.generate(TestBase::class)
@@ -48,5 +57,11 @@ internal class ObjectRandomizerTest {
 
     enum class TestEnum {
         A, B;
+    }
+
+    sealed class TestSealed(val s: String) {
+        class A(s: String, val a: Int) : TestSealed(s)
+        class B(s: String, val b: Int) : TestSealed(s)
+        class C : TestSealed("c")
     }
 }
