@@ -19,7 +19,7 @@ allprojects {
 add the dependency
 ```groovy
 dependencies {
-    implementation 'com.github.atsuya046:random-seed-kotlin:0.0.5'
+    implementation 'com.github.atsuya046:random-seed-kotlin:$version'
 }
 ```
 
