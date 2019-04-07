@@ -1,7 +1,6 @@
 package com.atsuya046.random
 
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner
-import kotlin.math.absoluteValue
 import kotlin.reflect.KClass
 import kotlin.reflect.jvm.javaConstructor
 
