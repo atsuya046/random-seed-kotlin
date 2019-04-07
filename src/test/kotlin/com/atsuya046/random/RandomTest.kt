@@ -24,6 +24,16 @@ internal class RandomTest {
     }
 
     @Test
+    fun generateInlineClass() {
+        val random = Random.newInstance()
+                .apply {
+                    register { TestInline(Random.generate()) }
+                }
+        val generated = random.generate<TestInline>()
+        assertTrue(generated is TestInline)
+    }
+
+    @Test
     fun customRandomizer() {
         (1..5).forEach {
             val random = Random.newInstance().apply { register(FixRandomizer(it)) }
@@ -47,3 +57,5 @@ internal class RandomTest {
         override fun generate(): T = fixed
     }
 }
+
+inline class TestInline(val value: Int)
