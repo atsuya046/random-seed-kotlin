@@ -35,7 +35,7 @@ class ObjectRandomizer(private val random: Random) {
             val enumConstants = clazz::java.get().enumConstants
             assert(enumConstants.isNotEmpty())
 
-            val randomIndex = random.generate<Int>() % enumConstants.size
+            val randomIndex = Math.abs(random.generate<Int>()) % enumConstants.size
             return enumConstants[randomIndex]
         }
 
