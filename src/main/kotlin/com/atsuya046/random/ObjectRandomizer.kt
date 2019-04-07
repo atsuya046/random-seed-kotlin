@@ -1,6 +1,7 @@
 package com.atsuya046.random
 
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner
+import kotlin.math.absoluteValue
 import kotlin.reflect.KClass
 import kotlin.reflect.jvm.javaConstructor
 
@@ -35,7 +36,7 @@ class ObjectRandomizer(private val random: Random) {
             val enumConstants = clazz::java.get().enumConstants
             assert(enumConstants.isNotEmpty())
 
-            val randomIndex = random.generate<Int>() % enumConstants.size
+            val randomIndex = Math.abs(random.generate<Int>()) % enumConstants.size
             return enumConstants[randomIndex]
         }
 
