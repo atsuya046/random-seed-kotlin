@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/random-seed-kotlin.iml" filepath="$PROJECT_DIR$/.idea/modules/random-seed-kotlin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/random-seed-kotlin_main.iml" filepath="$PROJECT_DIR$/.idea/modules/random-seed-kotlin_main.iml" group="random-seed-kotlin" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/random-seed-kotlin_test.iml" filepath="$PROJECT_DIR$/.idea/modules/random-seed-kotlin_test.iml" group="random-seed-kotlin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/random-seed-kotlin.iml" filepath="$PROJECT_DIR$/.idea/modules/random-seed-kotlin.iml" group="random-seed-kotlin" />
     </modules>
   </component>
 </project>
