@@ -54,6 +54,8 @@ gradle-app.setting
 *.iml
 modules.xml
 .idea/misc.xml
+.idea/caches/
 *.ipr
+local.properties
 
 # End of https://www.gitignore.io/api/intellij
