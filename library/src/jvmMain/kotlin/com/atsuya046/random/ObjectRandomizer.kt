@@ -1,12 +1,11 @@
 package com.atsuya046.random
 
-import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner
+import kotlin.math.abs
 import kotlin.reflect.KClass
-import kotlin.reflect.jvm.javaConstructor
 
-class ObjectRandomizer(private val random: Random) {
+actual class ObjectRandomizer actual constructor(private val random: Random) {
 
-    fun <T : Any> generate(clazz: KClass<T>): T = when {
+    actual fun <T : Any> generate(clazz: KClass<T>): T = when {
         clazz.isAbstract -> generateSubclassInstance(clazz)
         clazz.isSealed -> generateSealedSubclassInstance(clazz)
         else -> generateInstance(clazz)
@@ -20,14 +19,15 @@ class ObjectRandomizer(private val random: Random) {
 
     private fun <T : Any> generateSubclassInstance(clazz: KClass<T>): T {
         assert(clazz.isAbstract)
-
-        val scanner = FastClasspathScanner().matchSubclassesOf(clazz.java) {
-            // nothing to do
-        }
-        val result = scanner.scan()
-        val subClazzes = result.getNamesOfSubclassesOf(clazz.java).map { Class.forName(it).kotlin as KClass<T> }
-
-        return generateInstance(subClazzes.shuffled().first())
+        return TODO()
+//
+//        val scanner = FastClasspathScanner().matchSubclassesOf(clazz.java) {
+//            // nothing to do
+//        }
+//        val result = scanner.scan()
+//        val subClazzes = result.getNamesOfSubclassesOf(clazz.java).map { Class.forName(it).kotlin as KClass<T> }
+//
+//        return generateInstance(subClazzes.shuffled().first())
     }
 
     private fun <T : Any> generateInstance(clazz: KClass<T>): T {
@@ -35,7 +35,7 @@ class ObjectRandomizer(private val random: Random) {
             val enumConstants = clazz::java.get().enumConstants
             assert(enumConstants.isNotEmpty())
 
-            val randomIndex = Math.abs(random.generate<Int>()) % enumConstants.size
+            val randomIndex = abs(random.generate<Int>()) % enumConstants.size
             return enumConstants[randomIndex]
         }
 
@@ -52,9 +52,9 @@ class ObjectRandomizer(private val random: Random) {
         }
 
         return if (arguments.isEmpty()) {
-            constructor.javaConstructor?.newInstance()
+            constructor.call()
         } else {
-            constructor.javaConstructor?.newInstance(*arguments)
+            constructor.call(*arguments)
         } ?: throw RuntimeException("Cannot get constructor.")
     }
 }

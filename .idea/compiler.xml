@@ -4,6 +4,12 @@
     <bytecodeTargetLevel>
       <module name="com.example.library.jvmMain" target="1.6" />
       <module name="com.example.library.jvmTest" target="1.6" />
+      <module name="library.com.example.library.jvmMain" target="1.6" />
+      <module name="library.com.example.library.jvmTest" target="1.6" />
+      <module name="library.jvmMain" target="1.6" />
+      <module name="library.jvmTest" target="1.6" />
+      <module name="random-seed-kotlin.library.jvmMain" target="1.6" />
+      <module name="random-seed-kotlin.library.jvmTest" target="1.6" />
       <module name="random-seed-kotlin_main" target="1.8" />
       <module name="random-seed-kotlin_test" target="1.8" />
     </bytecodeTargetLevel>

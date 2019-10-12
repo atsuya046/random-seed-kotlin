@@ -7,7 +7,16 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.library.jvmMain.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.library.jvmMain.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.library.jvmTest.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.library.jvmTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library.iml" filepath="$PROJECT_DIR$/.idea/modules/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/library.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library.jvmMain.iml" filepath="$PROJECT_DIR$/.idea/modules/library.jvmMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library.jvmTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library.jvmTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/random-seed-kotlin.iml" filepath="$PROJECT_DIR$/.idea/modules/random-seed-kotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/random-seed-kotlin.library.iml" filepath="$PROJECT_DIR$/.idea/modules/library/random-seed-kotlin.library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/random-seed-kotlin.library.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/library/random-seed-kotlin.library.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/random-seed-kotlin.library.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/random-seed-kotlin.library.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/random-seed-kotlin.library.jvmMain.iml" filepath="$PROJECT_DIR$/.idea/modules/library/random-seed-kotlin.library.jvmMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/random-seed-kotlin.library.jvmTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/random-seed-kotlin.library.jvmTest.iml" />
     </modules>
   </component>
 </project>

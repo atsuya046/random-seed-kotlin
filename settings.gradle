@@ -1,2 +1,3 @@
 rootProject.name = 'random-seed-kotlin'
 
+include 'library'

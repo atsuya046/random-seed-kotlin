@@ -2,7 +2,7 @@
   <artifact type="jar" name="library-jvm-0.0.1">
     <output-path>$PROJECT_DIR$/library/build/libs</output-path>
     <root id="archive" name="library-jvm-0.0.1.jar">
-      <element id="module-output" name="com.example.library.jvmMain" />
+      <element id="module-output" name="library.com.example.library.jvmMain" />
     </root>
   </artifact>
 </component>

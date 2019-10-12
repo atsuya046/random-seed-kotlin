@@ -1,18 +1,18 @@
 package com.atsuya046.random
 
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
+import kotlin.test.assertTrue
 
 internal class ObjectRandomizerTest {
     @Test
     @Suppress("USELESS_IS_CHECK")
     fun generate() {
         val objectRandomizer = ObjectRandomizer(Random)
-        assert(objectRandomizer.generate(TestData1::class) is TestData1)
+        assertTrue(objectRandomizer.generate(TestData1::class) is TestData1)
 
-        assert(objectRandomizer.generate(TestData2::class) is TestData2)
-        assert(objectRandomizer.generate(TestData2::class).i is Int)
-        assert(objectRandomizer.generate(TestData2::class).s is String)
+        assertTrue(objectRandomizer.generate(TestData2::class) is TestData2)
+        assertTrue(objectRandomizer.generate(TestData2::class).i is Int)
+        assertTrue(objectRandomizer.generate(TestData2::class).s is String)
     }
 
     @Test
@@ -28,7 +28,7 @@ internal class ObjectRandomizerTest {
     fun generateWithSuperClass() {
         val objectRandomizer = ObjectRandomizer(Random)
         val result = objectRandomizer.generate(TestBase::class)
-        assert(result is TestInherited1 || result is TestInherited2)
+        assertTrue(result is TestInherited1 || result is TestInherited2)
     }
 
     @Test
