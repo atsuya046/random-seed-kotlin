@@ -2,11 +2,12 @@ package com.atsuya046.random
 
 import kotlin.math.abs
 import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
 actual class ObjectRandomizer actual constructor(private val random: Random) {
 
     actual fun <T : Any> generate(clazz: KClass<T>): T = when {
-        clazz.isAbstract -> generateSubclassInstance(clazz)
+        clazz.isAbstract -> throw RuntimeException("Unsupported abstract class. Please register implements with `Random.register`.")
         clazz.isSealed -> generateSealedSubclassInstance(clazz)
         else -> generateInstance(clazz)
     }
@@ -17,21 +18,8 @@ actual class ObjectRandomizer actual constructor(private val random: Random) {
         return generateInstance(subclass)
     }
 
-    private fun <T : Any> generateSubclassInstance(clazz: KClass<T>): T {
-        assert(clazz.isAbstract)
-        return TODO()
-//
-//        val scanner = FastClasspathScanner().matchSubclassesOf(clazz.java) {
-//            // nothing to do
-//        }
-//        val result = scanner.scan()
-//        val subClazzes = result.getNamesOfSubclassesOf(clazz.java).map { Class.forName(it).kotlin as KClass<T> }
-//
-//        return generateInstance(subClazzes.shuffled().first())
-    }
-
     private fun <T : Any> generateInstance(clazz: KClass<T>): T {
-        if (clazz::java.get().isEnum) {
+        if (clazz.superclasses.contains(Enum::class)) {
             val enumConstants = clazz::java.get().enumConstants
             assert(enumConstants.isNotEmpty())
 

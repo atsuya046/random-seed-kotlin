@@ -1,6 +1,7 @@
 package com.atsuya046.random
 
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 internal class ObjectRandomizerTest {
@@ -27,8 +28,7 @@ internal class ObjectRandomizerTest {
     @Test
     fun generateWithSuperClass() {
         val objectRandomizer = ObjectRandomizer(Random)
-        val result = objectRandomizer.generate(TestBase::class)
-        assertTrue(result is TestInherited1 || result is TestInherited2)
+        assertFailsWith<RuntimeException> { objectRandomizer.generate(TestBase::class) }
     }
 
     @Test
@@ -46,14 +46,14 @@ internal class ObjectRandomizerTest {
         assertTrue { randomValue == TestEnum.A || randomValue == TestEnum.B }
     }
 
-    private class TestData1
-    private class TestData2(val i: Int, val s: String)
+    internal class TestData1
+    internal class TestData2(val i: Int, val s: String)
 
-    private abstract class TestBase(val s: String)
-    private class TestInherited1(s: String) : TestBase(s)
-    private class TestInherited2(val i: Int, s: String) : TestBase(s)
+    internal abstract class TestBase(val s: String)
+    internal class TestInherited1(s: String) : TestBase(s)
+    internal class TestInherited2(val i: Int, s: String) : TestBase(s)
 
-    private class TestNullableField(val nullable: String?)
+    internal class TestNullableField(val nullable: String?)
 
     enum class TestEnum {
         A, B;
