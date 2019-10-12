@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/random-seed-kotlin.iml" filepath="$PROJECT_DIR$/.idea/modules/random-seed-kotlin.iml" group="random-seed-kotlin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.library.commonMain.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.library.commonMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.library.commonTest.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.library.commonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.library.jvmMain.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.library.jvmMain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.library.jvmTest.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.library.jvmTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library.iml" filepath="$PROJECT_DIR$/.idea/modules/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/random-seed-kotlin.iml" filepath="$PROJECT_DIR$/.idea/modules/random-seed-kotlin.iml" />
     </modules>
   </component>
 </project>

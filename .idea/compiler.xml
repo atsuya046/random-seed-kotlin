@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="com.example.library.jvmMain" target="1.6" />
+      <module name="com.example.library.jvmTest" target="1.6" />
       <module name="random-seed-kotlin_main" target="1.8" />
       <module name="random-seed-kotlin_test" target="1.8" />
     </bytecodeTargetLevel>
